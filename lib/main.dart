@@ -2,7 +2,6 @@ import 'pages/doctor_page.dart';
 import "pages/doctor_profile_page.dart";
 import "package:prueba_2/theme/colors.dart";
 import 'package:flutter/material.dart';
-import 'pages/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primary,
       ),
-      home: Home(),
+      home: DoctorPage(),
     );
   }
 }

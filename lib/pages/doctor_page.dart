@@ -1,11 +1,9 @@
-import 'package:badges/badges.dart' as Badge;
+import 'package:prueba_2/pages/detail_page.dart';
+
 import '/data/json.dart';
-import '/pages/doctor_profile_page.dart';
 import '/theme/colors.dart';
-import '/widgets/avatar_image.dart';
-import '/widgets/doctor_box.dart';
-import '/widgets/textbox.dart';
 import 'package:flutter/material.dart';
+import 'package:prueba_2/widgets/media_box.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DoctorPage extends StatefulWidget {
@@ -23,13 +21,13 @@ class _DoctorPageState extends State<DoctorPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Doctors",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
+          const Padding(
+            padding: EdgeInsets.only(right: 10),
             child: Icon(
               Icons.info,
               color: Colors.grey,
@@ -37,6 +35,8 @@ class _DoctorPageState extends State<DoctorPage> {
           ),
         ],
       ),
+
+      ///Aquip para borrar donde esta el cino de info
       body: getBody(),
     );
   }
@@ -48,71 +48,36 @@ class _DoctorPageState extends State<DoctorPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(child: CustomTextBox()),
-                SizedBox(
-                  width: 5,
-                ),
-                Icon(
-                  Icons.filter_list_rounded,
-                  color: primary,
-                  size: 35,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  chatsData.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Badge.Badge(
-                      badgeColor: Colors.green,
-                      borderSide: BorderSide(color: Colors.white),
-                      position: Badge.BadgePosition.topEnd(top: -3, end: 0),
-                      badgeContent: Text(''),
-                      child: AvatarImage(chatsData[index]["image"].toString()),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            getDoctorList(),
+            getMediaList(),
           ],
         ),
       ),
     );
   }
 
-  getDoctorList() {
+  getMediaList() {
     return StaggeredGrid.count(
       crossAxisCount: 4,
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
       children: List.generate(
-        doctors.length,
+        Media.length,
         (index) => StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: index.isEven ? 3 : 2,
-          child: DoctorBox(
+          child: MediaBox(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DoctorProfilePage(),
+                  builder: (context) => DetailPage(
+                    Media: Media[index],
+                  ),
                 ),
               );
             },
             index: index,
-            doctor: doctors[index],
+            Media: Media[index],
           ),
         ),
       ),
