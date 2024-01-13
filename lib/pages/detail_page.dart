@@ -104,7 +104,7 @@ class DetailPage extends StatelessWidget {
                                             height: 15,
                                           ),
                                           Text(
-                                            'Shere image',
+                                            'Shere History',
                                             style: GoogleFonts.notoSans(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w500,
