@@ -1,3 +1,5 @@
+import 'package:prueba_2/pages/sliver_page.dart';
+
 import 'pages/doctor_page.dart';
 import "package:prueba_2/theme/colors.dart";
 import 'package:flutter/material.dart';
